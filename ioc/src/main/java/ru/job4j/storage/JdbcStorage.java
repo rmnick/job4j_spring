@@ -2,6 +2,7 @@ package ru.job4j.storage;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 import ru.job4j.item.User;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.sql.*;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
+@Component
 public class JdbcStorage implements IStorage<User> {
     private final static BasicDataSource SOURCE = new BasicDataSource();
     private final static Logger LOG = Logger.getLogger(JdbcStorage.class.getName());
@@ -62,7 +64,7 @@ public class JdbcStorage implements IStorage<User> {
         String select = String.format("select u.name from users as u where u.id = %d;", user.getId());
         try (Connection con = SOURCE.getConnection(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(select)) {
             while (rs.next()) {
-                user.setName(rs.getString(2));
+                user.setName(rs.getString(1));
             }
             result = user;
         } catch (SQLException e) {

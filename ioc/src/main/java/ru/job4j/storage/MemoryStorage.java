@@ -1,5 +1,6 @@
 package ru.job4j.storage;
 
+import org.springframework.stereotype.Component;
 import ru.job4j.item.User;
 
 import java.util.HashMap;
