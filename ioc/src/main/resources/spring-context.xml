@@ -5,11 +5,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- bean definitions here -->
-<!--    <bean id="memory" class="ru.job4j.storage.MemoryStorage"/>-->
 
-<!--    <bean id="storage" class="ru.job4j.storage.UserStorage">-->
-<!--        <constructor-arg name="storage" ref="memory"></constructor-arg>-->
-<!--    </bean>-->
+    <!--<bean id="jdbc" class="ru.job4j.storage.JdbcStorage"/>-->
+
+    <!--<bean id="storage" class="ru.job4j.storage.UserStorage">-->
+        <!--<constructor-arg name="storage" ref="jdbc"></constructor-arg>-->
+    <!--</bean>-->
 
     <context:component-scan base-package="ru.job4j.storage"/>
 
