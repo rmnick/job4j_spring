@@ -7,15 +7,11 @@ import org.hibernate.Transaction;
 
 import java.util.function.Function;
 
-public class HibernateStore {
-    private final static Logger LOG = Logger.getLogger(HibernateStore.class.getName());
-    private SessionFactory sf;
+public abstract class AbstractHibernateStore<V> implements IStorage<V> {
+    private final static Logger LOG = Logger.getLogger(AbstractHibernateStore.class.getName());
+    protected SessionFactory sf;
 
-    public HibernateStore(final SessionFactory sf) {
-        this.sf = sf;
-    }
-
-    private <T> T tx(final Function<Session, T> command) {
+    protected <T> T tx(final Function<Session, T> command) {
         T result = null;
         final Session session = sf.openSession();
         final Transaction tx = session.beginTransaction();
@@ -31,21 +27,22 @@ public class HibernateStore {
         return result;
     }
 
-    public <V> V addEntity(V item) {
+    @Override
+    public V add(V item) {
         return tx(session -> {
             session.save(item);
             return item;
         });
     }
 
-    public <V> V deleteEntity(V item) {
+    public V delete(V item) {
         return tx(session -> {
             session.delete(item);
             return item;
         });
     }
 
-    public <V> V updateEntity(V item) {
+    public V update(V item) {
         return tx(session -> {
             session.update(item);
             return item;

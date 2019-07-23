@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -14,14 +14,14 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="id_user")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user")
     private List<Message> messageList;
 
     public User() {

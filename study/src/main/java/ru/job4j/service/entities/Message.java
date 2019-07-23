@@ -3,17 +3,17 @@ package ru.job4j.service.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="message")
+@Table(name = "message")
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="text")
+    @Column(name = "text")
     private String text;
 
-    @ManyToMany
+    @ManyToOne
     private User user;
 
     public Message() {
