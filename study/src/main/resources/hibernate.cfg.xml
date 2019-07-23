@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://127.0.0.1:5432/study</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">password</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
+        <mapping class="ru.job4j.service.entities.User"/>
+        <mapping class="ru.job4j.service.entities.Message"/>
+    </session-factory>
+</hibernate-configuration>

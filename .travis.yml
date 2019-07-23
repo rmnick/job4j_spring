@@ -8,6 +8,8 @@ services:
 
 before_install:
   - psql -c 'create database storage;' -U postgres
+  - psql -c 'create database study;' -U postgres
+
 
 
 env:
