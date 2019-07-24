@@ -3,7 +3,7 @@ package ru.job4j.service.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "message")
+@Table(name = "messages")
 public class Message {
 
     @Id
@@ -14,6 +14,7 @@ public class Message {
     private String text;
 
     @ManyToOne
+    @JoinColumn(name = "id_user")
     private User user;
 
     public Message() {

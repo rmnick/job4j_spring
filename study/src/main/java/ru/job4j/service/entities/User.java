@@ -20,8 +20,7 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Message> messageList;
 
     public User() {

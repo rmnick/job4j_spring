@@ -38,4 +38,8 @@ public class UserService implements IService<User> {
     public List<User> getAll() {
         return this.hibernateUserStore.getAll();
     }
+
+    public List<User> getAllWithMessages() {
+        return this.hibernateUserStore.getAllWithMessages();
+    }
 }

@@ -5,11 +5,11 @@
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
     <servlet>
-        <servlet-name>users</servlet-name>
-        <servlet-class>ru.job4j.controllers.Users</servlet-class>
+        <servlet-name>messages</servlet-name>
+        <servlet-class>ru.job4j.controllers.Messages</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>users</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <servlet-name>messages</servlet-name>
+        <url-pattern>/messages</url-pattern>
     </servlet-mapping>
 </web-app>

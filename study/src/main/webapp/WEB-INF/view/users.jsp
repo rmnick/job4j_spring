@@ -28,19 +28,17 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Login</th>
-            <th scope="col">Phone</th>
+            <th scope="col">N</th>
+            <th scope="col">message</th>
+            <th scope="col">author</th>
         </tr>
         </thead>
         <tbody>
-<c:forEach items="${users}" var="user">
+<c:forEach items="${messages}" var="message">
         <tr>
-            <td><c:out value="${user.key}"></c:out></td>
-            <td><c:out value="${user.value.name}"></c:out></td>
-            <td><c:out value="${user.value.login}"></c:out></td>
-            <td><c:out value="${user.value.phone}"></c:out></td>
+            <td><c:out value="${message.id}"></c:out></td>
+            <td><c:out value="${message.text}"></c:out></td>
+            <td><c:out value="${message.user.name}"></c:out></td>
         </tr>
 </c:forEach>
         </tbody>

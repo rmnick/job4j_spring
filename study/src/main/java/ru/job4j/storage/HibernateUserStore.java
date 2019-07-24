@@ -1,6 +1,7 @@
 package ru.job4j.storage;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import ru.job4j.service.entities.User;
 
@@ -30,6 +31,13 @@ public class HibernateUserStore extends AbstractHibernateStore<User> {
             Criteria criteria = session.createCriteria(User.class);
             criteria.addOrder(Order.asc("id"));
             return criteria.list();
+        });
+    }
+
+    public List<User> getAllWithMessages() {
+        return tx(session -> {
+            Query query = session.createQuery("select distinct u from User u inner join fetch u.messageList list order by list.id");
+            return query.list();
         });
     }
 }
