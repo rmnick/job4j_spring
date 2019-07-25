@@ -1,16 +1,18 @@
 package ru.job4j.service;
 
+import org.springframework.stereotype.Component;
 import ru.job4j.service.entities.Message;
 import ru.job4j.service.entities.User;
 import ru.job4j.storage.HibernateMessageStore;
 
 import java.util.List;
 
+//@Component
 public class MessageService implements IService<Message> {
-    private final static MessageService INSTANCE = new MessageService();
+    private final static IService INSTANCE = new MessageService();
     private HibernateMessageStore store = HibernateMessageStore.getInstance();
 
-    public static MessageService getInstance() {
+    public static IService getInstance() {
         return INSTANCE;
     }
 
@@ -41,7 +43,7 @@ public class MessageService implements IService<Message> {
         return this.store.getAll();
     }
 
-    public List<User> getAllWithUsers() {
-        return this.store.getAllWithUsers();
-    }
+//    public List<User> getAllWithUsers() {
+//        return this.store.getAllWithUsers();
+//    }
 }
