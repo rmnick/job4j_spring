@@ -39,7 +39,8 @@ public class UserService implements IService<User> {
         return this.hibernateUserStore.getAll();
     }
 
-    public List<User> getAllWithMessages() {
+    @Override
+    public List<User> getAllBoth() {
         return this.hibernateUserStore.getAllWithMessages();
     }
 }

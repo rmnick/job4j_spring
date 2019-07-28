@@ -35,9 +35,9 @@ public class HibernateMessageStore extends AbstractHibernateStore<Message> {
         });
     }
 
-    public List<User> getAllWithUsers() {
+    public List<Message> getAllWithUsers() {
         return tx(session -> {
-            Query query = session.createQuery("select m from Message m inner join fetch User order by m.id");
+            Query query = session.createQuery("select m from Message m inner join fetch User");
             return query.list();
         });
     }

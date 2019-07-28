@@ -8,4 +8,5 @@ public interface IService<V> {
     V update(V item);
     V delete(V item);
     List<V> getAll();
+    List<V> getAllBoth();
 }
