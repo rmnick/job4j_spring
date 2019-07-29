@@ -1,2 +1,2 @@
-create table if not exists users (id serial primary key, name varchar(20), login varchar(20), phone varchar(11));
+create table if not exists users (id serial primary key, name varchar(20), login varchar(20), phone varchar(11), password varchar(10));
 create table if not exists messages (id serial primary key, text varchar(200), id_user int references users(id));

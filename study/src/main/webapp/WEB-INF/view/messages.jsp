@@ -16,14 +16,51 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body {
-            background-color:#C0C0C0;
-        }
-        .container { margin-top:20px; }
-    </style>
+    <link href="<c:url value="/resources/css/messages.css" />" rel="stylesheet">
 </head>
 <body>
+
+<!-- modal window -->
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <!--                <h4 class="modal-title">Sign in</h4>-->
+            </div>
+            <!-- body of modal window -->
+            <div class="modal-body">
+                <form id="form-enter" method='post' action='${pageContext.request.contextPath}/enter'>
+                    <div class="form-group">
+                        <label for="login">login</label>
+                        <input type="text" class="form-control" maxlength="15" id="login" placeholder="enter your login">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">password</label>
+                        <input type="password" class="form-control" maxlength="20" id="password" placeholder="enter your password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">enter</button>
+                </form>
+            </div>
+            <!-- footer -->
+            <div class="modal-footer">
+                <div class="row">
+                    <form class="form-horizontal" id="form-reg" method='get' action='${pageContext.request.contextPath}/create'>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" id="reg" class="btn btn-primary">registration</button>                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--main part--%>
+
 <div class="container">
     <table class="table">
         <thead>
@@ -44,17 +81,16 @@
         </tbody>
     </table>
     <div class="row">
-        <div class="col">
-            <form method='get' action='${pageContext.request.contextPath}/create'>
-                <button type='submit'>create user</button>
-            </form>
-        </div>
-        <div class="col">
-            <form method='get' action='${pageContext.request.contextPath}/authentication'>
-                <button type='submit'>sign out</button>
-            </form>
+        <div>
+            <div class="form-group" id="in">
+                <a href="#myModal" id="signin" class="btn btn-primary" data-toggle="modal">sign in</a>
+            </div>
+            <div class="form-group" id="out">
+
+            </div>
         </div>
     </div>
 </div>
+<%--</div>--%>
 </body>
 </html>
