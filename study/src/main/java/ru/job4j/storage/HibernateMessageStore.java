@@ -6,6 +6,7 @@ import org.hibernate.criterion.Order;
 import ru.job4j.service.entities.Message;
 import ru.job4j.service.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateMessageStore extends AbstractHibernateStore<Message> {
@@ -35,10 +36,16 @@ public class HibernateMessageStore extends AbstractHibernateStore<Message> {
         });
     }
 
+    @Override
+    public List<Message> getByRestriction(Message message) {
+        return new ArrayList<Message>();
+    }
+
     public List<Message> getAllWithUsers() {
         return tx(session -> {
             Query query = session.createQuery("select m from Message m inner join fetch User");
             return query.list();
         });
     }
+
 }

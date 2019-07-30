@@ -9,4 +9,5 @@ public interface IService<V> {
     V delete(V item);
     List<V> getAll();
     List<V> getAllBoth();
+    boolean check(V item);
 }

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link href="<c:url value="/resources/css/messages.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/messages.css"/>" rel="stylesheet">
 </head>
 <body>
 
@@ -35,11 +35,11 @@
                 <form id="form-enter" method='post' action='${pageContext.request.contextPath}/enter'>
                     <div class="form-group">
                         <label for="login">login</label>
-                        <input type="text" class="form-control" maxlength="15" id="login" placeholder="enter your login">
+                        <input type="text" class="form-control" maxlength="15" id="login" name="login" placeholder="enter your login">
                     </div>
                     <div class="form-group">
                         <label for="password">password</label>
-                        <input type="password" class="form-control" maxlength="20" id="password" placeholder="enter your password" name="password">
+                        <input type="password" class="form-control" maxlength="20" id="password" name="password" placeholder="enter your password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary">enter</button>
                 </form>
@@ -60,7 +60,11 @@
 </div>
 
 <%--main part--%>
-
+<c:if test="${text != ''}">
+    <div style="min-font-size: 24">
+        <c:out value="${text}"/>
+    </div>
+</c:if>
 <div class="container">
     <table class="table">
         <thead>

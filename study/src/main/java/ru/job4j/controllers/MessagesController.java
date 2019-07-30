@@ -2,6 +2,7 @@ package ru.job4j.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +16,10 @@ import java.util.List;
 @RequestMapping(value = "/message")
 public class MessagesController {
     private final static Logger LOG = Logger.getLogger(MessagesController.class.getName());
-    private IService messageService;
 
     @Autowired
-    public MessagesController(IService service) {
-        this.messageService = service;
-    }
+    @Qualifier ("messageService")
+    private IService messageService;
 
 
     @RequestMapping(method = RequestMethod.GET)

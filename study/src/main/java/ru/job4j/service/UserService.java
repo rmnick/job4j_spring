@@ -1,23 +1,17 @@
 package ru.job4j.service;
 
+import org.springframework.stereotype.Component;
 import ru.job4j.service.entities.User;
 import ru.job4j.storage.HibernateUserStore;
 
 import java.util.List;
 
+@Component("userService")
 public class UserService implements IService<User> {
     private HibernateUserStore hibernateUserStore = HibernateUserStore.getInstance();
-    private final static UserService INSTANCE = new UserService();
 
-    private UserService() {
-
+    public UserService() {
     }
-
-    public static UserService getInstance() {
-        return INSTANCE;
-    }
-
-
 
     public User add(User user) {
         return this.hibernateUserStore.add(user);
@@ -42,5 +36,14 @@ public class UserService implements IService<User> {
     @Override
     public List<User> getAllBoth() {
         return this.hibernateUserStore.getAllWithMessages();
+    }
+
+    @Override
+    public boolean check(User user) {
+        boolean result = false;
+        if (this.hibernateUserStore.getByRestriction(user).size() != 0) {
+            result = true;
+        }
+        return result;
     }
 }

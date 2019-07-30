@@ -8,4 +8,5 @@ public interface IStorage<V> {
     V delete(V item);
     V get(V item);
     List<V> getAll();
+    List<V> getByRestriction(V item);
 }

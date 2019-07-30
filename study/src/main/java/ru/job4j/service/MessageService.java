@@ -6,7 +6,7 @@ import ru.job4j.storage.HibernateMessageStore;
 
 import java.util.List;
 
-@Component
+@Component("messageService")
 public class MessageService implements IService<Message> {
     private HibernateMessageStore store = HibernateMessageStore.getInstance();
 
@@ -42,5 +42,10 @@ public class MessageService implements IService<Message> {
     @Override
     public List<Message> getAllBoth() {
         return this.store.getAllWithUsers();
+    }
+
+    @Override
+    public boolean check(Message message) {
+        return false;
     }
 }

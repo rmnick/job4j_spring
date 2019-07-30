@@ -3,6 +3,7 @@ package ru.job4j.storage;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import ru.job4j.service.entities.User;
 
 import java.util.List;
@@ -31,6 +32,16 @@ public class HibernateUserStore extends AbstractHibernateStore<User> {
             Criteria criteria = session.createCriteria(User.class);
             criteria.addOrder(Order.asc("id"));
             return criteria.list();
+        });
+    }
+
+    @Override
+    public List<User> getByRestriction(User user) {
+        return tx(session -> {
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("login", user.getLogin()))
+                    .add(Restrictions.eq("password", user.getPassword()));
+            return (List<User>) criteria.list();
         });
     }
 
