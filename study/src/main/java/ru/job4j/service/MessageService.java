@@ -45,7 +45,12 @@ public class MessageService implements IService<Message> {
     }
 
     @Override
-    public boolean check(Message message) {
+    public boolean checkOne(Message message) {
+        return false;
+    }
+
+    @Override
+    public boolean checkTwo(Message message) {
         return false;
     }
 }

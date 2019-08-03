@@ -31,7 +31,7 @@ public class EnterController {
         user.setLogin(request.getParameter("login"));
         user.setPassword(request.getParameter("password"));
         ModelAndView mv = new ModelAndView("redirect:/message");
-        if (this.userService.check(user)) {
+        if (this.userService.checkOne(user)) {
             HttpSession session = request.getSession();
             session.setAttribute("login", user.getLogin());
         } else {

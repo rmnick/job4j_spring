@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/resources/js/create.js" />"></script>
     <link href="<c:url value="/resources/css/create.css" />" rel="stylesheet">
-
 </head>
 <body>
+<c:if test="${text != ''}">
+    <div style="min-font-size: 24">
+        <c:out value="${text}"/>
+    </div>
+</c:if>
 <div class="container">
     <form class="form-horizontal" id="mainform" method='post' action='${pageContext.request.contextPath}/create' onsubmit="return validate()">
         <div class="form-group">

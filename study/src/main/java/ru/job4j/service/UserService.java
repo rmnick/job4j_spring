@@ -39,9 +39,18 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    public boolean check(User user) {
+    public boolean checkOne(User user) {
         boolean result = false;
-        if (this.hibernateUserStore.getByRestriction(user).size() != 0) {
+        if (this.hibernateUserStore.getByRestrictionOne(user).size() != 0) {
+            result = true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean checkTwo(User user) {
+        boolean result = false;
+        if (this.hibernateUserStore.getByRestrictionTwo(user).size() == 0) {
             result = true;
         }
         return result;

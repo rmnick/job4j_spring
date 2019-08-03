@@ -2,6 +2,7 @@ package ru.job4j.service.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -76,5 +77,32 @@ public class User {
 
     public void setMessageList(List<Message> messageList) {
         this.messageList = messageList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || !(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return id == user.id
+                && name.equals(user.name)
+                && login.equals(user.login)
+                && phone.equals(user.phone)
+                && password.equals(user.password)
+                && Objects.equals(messageList, user.messageList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, login, phone, password, messageList);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User{id : %d, name : %s, login : %s, phone : %s}", this.id, this.name, this.login, this.phone);
     }
 }

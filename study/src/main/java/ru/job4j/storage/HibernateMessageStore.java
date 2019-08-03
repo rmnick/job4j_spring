@@ -37,7 +37,12 @@ public class HibernateMessageStore extends AbstractHibernateStore<Message> {
     }
 
     @Override
-    public List<Message> getByRestriction(Message message) {
+    public List<Message> getByRestrictionOne(Message message) {
+        return new ArrayList<Message>();
+    }
+
+    @Override
+    public List<Message> getByRestrictionTwo(Message message) {
         return new ArrayList<Message>();
     }
 
