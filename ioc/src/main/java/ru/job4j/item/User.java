@@ -16,6 +16,11 @@ public class User {
         this.name = name;
     }
 
+    public User(final int id, final String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -52,6 +57,11 @@ public class User {
         result = 31 * result + name.hashCode();
         result = 31 * result + Integer.valueOf(id).hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User{id : %d; name : %s}", this.id, this.name);
     }
 
 

@@ -3,7 +3,9 @@ package ru.job4j.storage;
 import org.springframework.stereotype.Component;
 import ru.job4j.item.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,6 +29,15 @@ public class MemoryStorage implements IStorage<User> {
 
     private int getId() {
         return counter.incrementAndGet();
+    }
+
+    @Override
+    public List<User> getAll() {
+        List<User> result = new ArrayList<>();
+        this.map.keySet().forEach(key -> {
+            result.add(this.map.get(key));
+        });
+        return result;
     }
 
     @Override

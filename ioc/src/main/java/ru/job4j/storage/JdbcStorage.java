@@ -8,9 +8,14 @@ import ru.job4j.item.User;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
+/**
+ * work with DB "storage" on PostgreSQL by JDBC driver, use simple sql queries
+ */
 @Component
 public class JdbcStorage implements IStorage<User> {
     private final static BasicDataSource SOURCE = new BasicDataSource();
@@ -33,7 +38,7 @@ public class JdbcStorage implements IStorage<User> {
     }
 
     /**
-     * add user to DB
+     * add user to DB, get id
      * @param user User
      * @return result User
      */
@@ -58,6 +63,11 @@ public class JdbcStorage implements IStorage<User> {
 
     }
 
+    /**
+     * get user from DB by user id
+     * @param user User
+     * @return user User
+     */
     @Override
     public User get(User user) {
         User result = null;
@@ -73,6 +83,29 @@ public class JdbcStorage implements IStorage<User> {
         return result;
     }
 
+    /**
+     * get all users from DB
+     * @return
+     */
+    @Override
+    public List<User> getAll() {
+        List<User> result = new ArrayList<>();
+        User user;
+        String select = "select u.id, u.name from users as u";
+        try (Connection con = SOURCE.getConnection(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(select)) {
+            while (rs.next()) {
+                user = new User(rs.getInt(1), rs.getString(2));
+                result.add(user);
+            }
+        } catch (SQLException e) {
+            LOG.error(e.getMessage(), e);
+        }
+        return result;
+    }
+
+    /**
+     * close all DB resources
+     */
     @Override
     public void close() {
         try {
