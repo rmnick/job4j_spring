@@ -12,6 +12,17 @@
         <!--<constructor-arg name="storage" ref="jdbc"></constructor-arg>-->
     <!--</bean>-->
 
+    <bean id="userData" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/storage"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="password"/>
+    </bean>
+
+<!--    <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">-->
+<!--        <constructor-arg name="dataSource" ref="userData"/>-->
+<!--    </bean>-->
+
     <context:component-scan base-package="ru.job4j.storage"/>
 
 </beans>

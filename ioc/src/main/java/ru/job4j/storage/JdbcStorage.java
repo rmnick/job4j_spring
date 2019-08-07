@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * work with DB "storage" on PostgreSQL by JDBC driver, use simple sql queries
  */
-@Component
+//@Component
 public class JdbcStorage implements IStorage<User> {
     private final static BasicDataSource SOURCE = new BasicDataSource();
     private final static Logger LOG = Logger.getLogger(JdbcStorage.class.getName());
