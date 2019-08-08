@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
@@ -21,44 +23,46 @@ import java.util.List;
 @Component
 public class UserRepo implements IStorage<User> {
 
-    private final JdbcTemplate template;
+    private final NamedParameterJdbcTemplate template;
+//    private final JdbcTemplate template;
+
 
     @Autowired
     public UserRepo(DataSource dataSource) {
-        this.template = new JdbcTemplate(dataSource);
+        this.template = new NamedParameterJdbcTemplate(dataSource);
+//        this.template = new JdbcTemplate(dataSource);
     }
 
     @Override
     public User add(User item) {
-        String insert = "insert into users (name) values (?)";
-        //MapSqlParameterSource params = new MapSqlParameterSource();
-        //params.addValue("n", item.getName());
+        final String INSERT_SQL = "insert into users (name) values (:name)";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", item.getName());
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        //template.update(INSERT_SQL, new String[]{item.getName()}, keyHolder);
-        template.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(insert, new String[]{"id"});
-                ps.setString(1, item.getName());
-                return ps;
-            }
-        }, keyHolder);
-        item.setId(keyHolder.getKey().intValue());
+        template.update(INSERT_SQL, params, keyHolder);
+//        template.update(new PreparedStatementCreator() {
+//            @Override
+//            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+//                PreparedStatement ps = connection.prepareStatement(insert, new String[]{"id"});
+//                ps.setString(1, item.getName());
+//                return ps;
+//            }
+//        }, keyHolder);
+        item.setId((int) keyHolder.getKeys().get("id"));
         return item;
     }
 
     @Override
     public User get(User item) {
-        String select = "select * from users u where u.id = ?";
-//        MapSqlParameterSource params = new MapSqlParameterSource();
-//        params.addValue("id", item.getId());
-        return template.queryForObject(select, new Object[]{item.getId()}, new UserRowMapper());
+        final String SELECT = "select * from users u where u.id = :id";
+        SqlParameterSource params = new MapSqlParameterSource().addValue("id", item.getId());
+        return template.queryForObject(SELECT, params, new UserRowMapper());
     }
 
     @Override
     public List<User> getAll() {
-        String selectAll = "select * from users";
-        return template.query(selectAll, new BeanPropertyRowMapper(User.class));
+        final String SELECT_ALL = "select * from users";
+        return template.query(SELECT_ALL, new BeanPropertyRowMapper(User.class));
     }
 
     @Override
