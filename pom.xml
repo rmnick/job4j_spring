@@ -20,6 +20,7 @@
 
         <module>ioc</module>
         <module>study</module>
+        <module>coursehunters</module>
     </modules>
 
     <profiles>
