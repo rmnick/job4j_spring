@@ -1,7 +1,8 @@
 package org.chubaka.chapterone;
 
 public interface ICoach {
+    void warmUp();
     String prepare();
     String work();
-    String getName();
+    void endUp();
 }

@@ -1,16 +1,28 @@
 package org.chubaka.chapterone;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("run")
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
+@Scope("singleton")
 public class RunCoach implements ICoach {
 
+    @Autowired
+    @Qualifier("handBag")
     private IBag bag;
-    private String name;
 
-    public RunCoach(IBag bag, String name) {
-        this.bag = bag;
-        this.name = name;
+    public RunCoach() {
+    }
+
+    @PostConstruct
+    @Override
+    public void warmUp() {
+        System.out.println("Running for warm up");
     }
 
     @Override
@@ -23,7 +35,10 @@ public class RunCoach implements ICoach {
         return "practice running";
     }
 
-    public String getName() {
-        return this.name;
+    @PreDestroy
+    @Override
+    public void endUp() {
+        System.out.println("Closing training");
     }
+
 }
