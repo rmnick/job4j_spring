@@ -15,6 +15,9 @@ public class MyApp {
         System.out.println(runCoach .prepare());
         System.out.println(runCoach .work());
 
+        System.out.println(swimCoach);
+        System.out.println(runCoach);
+
         context.close();
         //there's method after destroy runCoach bean
     }

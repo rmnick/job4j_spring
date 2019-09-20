@@ -1,19 +1,16 @@
-package org.chubaka.chapterone;
+package org.chubaka.javacode;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-@Component("swim")
-@Scope("prototype")
 public class SwimCoach implements ICoach {
 
     @Autowired
     @Qualifier("heavyBag")
     private IBag bag;
-    @Value("Vasya")
+    @Value("${nameTwo}")
     private String name;
 
     public SwimCoach() {
