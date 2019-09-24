@@ -10,8 +10,8 @@ public class MyApp {
         ICoach runCoach = context.getBean("swimCoach", ICoach.class);
         System.out.println(swimCoach.prepare());
         System.out.println(swimCoach.work());
-        System.out.println(runCoach .prepare());
-        System.out.println(runCoach .work());
+        System.out.println(runCoach.prepare());
+        System.out.println(runCoach.work());
 
         System.out.println(swimCoach);
         System.out.println(runCoach);
