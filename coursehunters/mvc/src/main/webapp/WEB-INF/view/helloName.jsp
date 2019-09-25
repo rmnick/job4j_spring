@@ -11,6 +11,6 @@
     <title>hello</title>
 </head>
 <body>
-<h2>Hello ${param.fieldname}</h2>
+<h2>Hello ${param.fieldname} ${nameCaps} ${lowerName}</h2>
 </body>
 </html>

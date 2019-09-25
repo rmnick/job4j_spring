@@ -7,6 +7,8 @@
 <body>
 <h2>Hey from demo start</h2>
 <br><br>
-<a href="/enter-name">click on link</a>
+<a href="/processing/enter-name">show hello demo</a>
+<br>
+<a href="/student/showForm">show student registration form</a>
 </body>
 </html>
