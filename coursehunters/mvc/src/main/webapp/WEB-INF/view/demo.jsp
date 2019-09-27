@@ -8,7 +8,9 @@
 <h2>Hey from demo start</h2>
 <br><br>
 <a href="/processing/enter-name">show hello demo</a>
-<br>
+<br><br>
 <a href="/student/showForm">show student registration form</a>
+<br><br>
+<a href="/customer/show">show customer validation form</a>
 </body>
 </html>
