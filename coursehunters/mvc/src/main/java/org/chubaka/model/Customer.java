@@ -1,5 +1,7 @@
 package org.chubaka.model;
 
+import org.chubaka.service.LoginValidation;
+
 import javax.validation.constraints.*;
 
 /**
@@ -19,6 +21,10 @@ public class Customer {
 
     @Pattern(regexp = "[0-9]{6}", message = "only the digits, length equals six")
     private String postalCode;
+
+    @NotNull(message = "there's must be something")
+    @LoginValidation
+    private String login;
 
     public Customer() {
 
@@ -54,6 +60,14 @@ public class Customer {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override

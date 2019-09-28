@@ -13,7 +13,7 @@
     <title>Hello</title>
 </head>
 <body>
-Hello ${customer.firstName} ${customer.lastName} your age is ${customer.age}
+Hello ${customer.firstName} ${customer.lastName} your age is ${customer.age} login is ${customer.login}
 <br><br>
 your postal code is ${customer.postalCode}
 </body>

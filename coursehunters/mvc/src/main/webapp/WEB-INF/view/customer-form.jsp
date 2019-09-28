@@ -28,6 +28,9 @@
     Postal code(*): <form:input path="postalCode"/>
     <form:errors path="postalCode" cssClass="error"/>
     <br><br>
+    login(*): <form:input path="login" placeholder="input your last name"/>
+    <form:errors path="login" cssClass="error"/>
+    <br><br>
     <input type="submit" value="SUBMIT">
 </form:form>
 </body>
