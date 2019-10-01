@@ -5,22 +5,28 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateTest {
+import java.util.List;
+
+public class QueryExample {
     public static void main(String[] args) {
         SessionFactory sf = new Configuration()
                 .configure()
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
         Session session = sf.getCurrentSession();
-
-        Student student = new Student("Nick", "Rodionov", "k@mail.org");
-
         try {
-            System.out.println("start transaction");
+          //get list of entities from DB
             session.beginTransaction();
-            session.save(student);
-            System.out.println("commit transaction");
+            List<Student> students = session.createQuery("from Student").list();
             session.getTransaction().commit();
+            students.forEach(System.out::println);
+
+            session = sf.getCurrentSession();
+            session.beginTransaction();
+            students = session.createQuery("from Student s where s.firstName = 'Nick'").list();
+            session.getTransaction().commit();
+            students.forEach(System.out::println);
+
         } finally {
             System.out.println("close factory");
             sf.close();
