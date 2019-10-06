@@ -16,6 +16,26 @@ public class Info {
     @Column(name = "married")
     private boolean married;
 
+    /**
+     * for the bidirectional link
+     */
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @OneToOne(mappedBy = "info", cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH}
+            )
+    private Person person;
+
+
+
     public Info() {
 
     }
