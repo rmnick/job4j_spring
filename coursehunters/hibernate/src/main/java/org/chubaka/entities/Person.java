@@ -2,6 +2,8 @@ package org.chubaka.entities;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -24,6 +26,13 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "info_id")
     private Info info;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person",
+            cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
+    private List<Cat> cats;
 
     public Person() {
 
@@ -73,6 +82,23 @@ public class Person {
 
     public void setInfo(Info info) {
         this.info = info;
+    }
+
+    public List<Cat> getCats() {
+        return cats;
+    }
+
+    public void setCats(List<Cat> cats) {
+        this.cats = cats;
+    }
+
+    //bond two entities (bidirectional link)
+    public void addCat(Cat cat) {
+        if (cats == null) {
+            cats = new ArrayList<>();
+        }
+        cat.setPerson(this);
+        cats.add(cat);
     }
 
     @Override
