@@ -17,6 +17,7 @@
         <module>javacode</module>
         <module>mvc</module>
         <module>hibernate</module>
+        <module>crud</module>
     </modules>
 
     <dependencies>
