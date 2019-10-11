@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- add support for component scanning path-->
+    <context:component-scan base-package="org.chubaka.controller"/>
+    <context:component-scan base-package="org.chubaka.service"/>
+
+
+    <!-- add support for conversion formatting and validation-->
+    <mvc:annotation-driven/>
+
+    <!-- add definition for view resolver-->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/WEB-INF/view/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <!-- add custom invalid messages-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames" value="messages"/>
+    </bean>
+
+    <!-- define database datasource/pool define -->
+    <bean id="dataBasePool" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/coursehunters"/>
+        <property name="user" value="postgres"/>
+        <property name="password" value="password"/>
+
+        <!-- set connection size pool -->
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="maxIdleTime" value="30000"/>
+    </bean>
+
+    <!-- setup hibernate session factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataBasePool"/>
+        <property name="packagesToScan" value="org.chubaka.entity"/>
+
+    </bean>
+    
+</beans>

@@ -9,6 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <packaging>war</packaging>
+
     <artifactId>crud</artifactId>
 
     <dependencies>
@@ -88,6 +90,18 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.1.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.2.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -98,7 +112,7 @@
                 <version>3.6.2</version>
                 <configuration>
                     <changeLogFile>${basedir}/db/master.xml</changeLogFile>
-                    <url>jdbc:postgresql://127.0.0.1:5432/coursehunter</url>
+                    <url>jdbc:postgresql://127.0.0.1:5432/coursehunters</url>
                     <driver>org.postgresql.Driver</driver>
                     <username>postgres</username>
                     <password>password</password>
