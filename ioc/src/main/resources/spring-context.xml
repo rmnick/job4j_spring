@@ -6,10 +6,10 @@
 
     <!-- bean definitions here -->
 
-    <!--<bean id="jdbc" class="ru.job4j.storage.JdbcStorage"/>-->
+    <!--<bean id="jdbc" class="ru.job4j.dao.JdbcStorage"/>-->
 
-    <!--<bean id="storage" class="ru.job4j.storage.UserStorage">-->
-        <!--<constructor-arg name="storage" ref="jdbc"></constructor-arg>-->
+    <!--<bean id="dao" class="ru.job4j.dao.UserStorage">-->
+        <!--<constructor-arg name="dao" ref="jdbc"></constructor-arg>-->
     <!--</bean>-->
 
     <bean id="userData" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

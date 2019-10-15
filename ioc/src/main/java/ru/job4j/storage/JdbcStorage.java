@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 
 /**
- * work with DB "storage" on PostgreSQL by JDBC driver, use simple sql queries
+ * work with DB "dao" on PostgreSQL by JDBC driver, use simple sql queries
  */
 //@Component
 public class JdbcStorage implements IStorage<User> {

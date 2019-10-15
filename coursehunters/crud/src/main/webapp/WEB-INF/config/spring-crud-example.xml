@@ -3,11 +3,26 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties" />
 
     <!-- add support for component scanning path-->
     <context:component-scan base-package="org.chubaka.controller"/>
     <context:component-scan base-package="org.chubaka.service"/>
+    <context:component-scan base-package="org.chubaka.dao"/>
+
 
 
     <!-- add support for conversion formatting and validation-->
@@ -31,10 +46,10 @@
 
     <!-- define database datasource/pool define -->
     <bean id="dataBasePool" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="org.postgresql.Driver"/>
-        <property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/coursehunters"/>
-        <property name="user" value="postgres"/>
-        <property name="password" value="password"/>
+        <property name="driverClass" value="${driver-class-name}"/>
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="user" value="${username}"/>
+        <property name="password" value="${password}"/>
 
         <!-- set connection size pool -->
         <property name="minPoolSize" value="5"/>
@@ -46,7 +61,23 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataBasePool"/>
         <property name="packagesToScan" value="org.chubaka.entity"/>
-
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show.sql">${show-prop}</prop>
+                <prop key="hibernate.dialect">${dialect}</prop>
+            </props>
+        </property>
     </bean>
-    
+
+    <!-- transaction setup -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- define resources folder -->
+    <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 </beans>

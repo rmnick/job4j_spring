@@ -32,13 +32,13 @@ public class StorageTest {
 
     @Test
     public void whenLoadContextThenGetBeanStorage() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         assertNotNull(userStorage);
     }
 
     @Test
     public void whenAddUserThenAddingUserToMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         User user = new User("Slava");
         User result = userStorage.add(user);
         assertThat(user.getName(), is(userStorage.get(result).getName()));
@@ -46,7 +46,7 @@ public class StorageTest {
 
     @Test
     public void whenGetUserFromMemoryByIdThenReturnRightUserFromMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         User user = new User("Sergei");
         User result = userStorage.add(user);
         assertThat(result, is(userStorage.get(result)));
@@ -54,7 +54,7 @@ public class StorageTest {
 
     @Test
     public void whenGetAllUsersThenReturnAllFromMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         User userOne = new User("Slava");
         User userTwo = new User("Sergei");
         userStorage.add(userOne);
@@ -74,7 +74,7 @@ public class StorageTest {
 
     @Test
     public void whenAddUserFromImportUserThenAddingUserToMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         List<String> answers = new ArrayList<>();
         answers.add("1");
         answers.add("Slava");
@@ -99,7 +99,7 @@ public class StorageTest {
 
     @Test
     public void whenGetUserFromImportUserThenReturnUserFromMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         List<String> answers = new ArrayList<>();
         answers.add("1");
         answers.add("Slava");
@@ -133,7 +133,7 @@ public class StorageTest {
 
     @Test
     public void whenGetAllUserFromImportUserThenReturnAllUsersFromMemory() {
-        UserStorage userStorage = (UserStorage) applicationContext.getBean("storage");
+        UserStorage userStorage = (UserStorage) applicationContext.getBean("dao");
         List<String> answers = new ArrayList<>();
         answers.add("1");
         answers.add("Slava");
