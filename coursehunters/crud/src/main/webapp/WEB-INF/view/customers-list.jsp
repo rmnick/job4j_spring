@@ -16,6 +16,7 @@
     <link type="text/css"
           rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/css/style.css"/>
+
 </head>
 <body>
 
@@ -27,22 +28,49 @@
 
 <div id="container">
 
-    <table>
-        <tr>
-            <th>first name</th>
-            <th>last name</th>
-            <th>email</th>
-        </tr>
-        <c:forEach var="tempCustomer" items="${customers}">
+    <div id="content">
+
+        <input type="button" value="add customer"
+               onclick="window.location.href='addCustomer'; return false;"
+               class="add-button">
+
+        <table>
             <tr>
-                <td>${tempCustomer.firstName}</td>
-                <td>${tempCustomer.lastName}</td>
-                <td>${tempCustomer.email}</td>
+                <th>first name</th>
+                <th>last name</th>
+                <th>email</th>
+                <th>action</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="tempCustomer" items="${customers}">
+
+                <c:url var="urlUpdating" value="/customer/updateCustomer">
+                    <c:param name="customerId" value="${tempCustomer.id}"/>
+                </c:url>
+
+                <c:url var="urlDeleting" value="/customer/deleteCustomer">
+                    <c:param name="customerId" value="${tempCustomer.id}"/>
+                </c:url>
+
+
+                <tr>
+                    <td>${tempCustomer.firstName}</td>
+                    <td>${tempCustomer.lastName}</td>
+                    <td>${tempCustomer.email}</td>
+                    <td>
+                        <a href="${urlUpdating}">update</a>
+                    |
+                        <a href="${urlDeleting}" onclick="confirmation()">delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+
 
 </div>
+
+
+<script src="${pageContext.request.contextPath}/resources/script/script.js"></script>
 
 </body>
 </html>

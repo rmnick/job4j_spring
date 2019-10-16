@@ -19,4 +19,16 @@ public class CustomerServiceImp implements ICustomerService {
     public List<Customer> getCustomers() {
         return customerDao.getCustomers();
     }
+
+    @Override
+    @Transactional
+    public Customer saveCustomer(Customer customer) {
+        return customerDao.saveCustomer(customer);
+    }
+
+    @Override
+    @Transactional
+    public Customer getCustomer(int id) {
+        return customerDao.getCustomer(id);
+    }
 }
