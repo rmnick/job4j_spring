@@ -18,6 +18,7 @@
         <module>mvc</module>
         <module>hibernate</module>
         <module>crud</module>
+        <module>aop</module>
     </modules>
 
     <dependencies>

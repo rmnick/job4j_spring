@@ -59,7 +59,7 @@
                     <td>
                         <a href="${urlUpdating}">update</a>
                     |
-                        <a href="${urlDeleting}" onclick="confirmation()">delete</a>
+                        <a href="${urlDeleting}" onclick="if (!(confirm('are you sure?'))) return false;">delete</a>
                     </td>
                 </tr>
             </c:forEach>

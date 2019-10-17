@@ -38,4 +38,17 @@ public class CustomerDao implements ICustomerDao {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Customer.class, id);
     }
+
+    @Override
+    public Customer deleteCustomer(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Customer customer = session.get(Customer.class, id);
+
+//        Query query = session.createQuery("delete from Customer where id=:customerId");
+//        query.setParameter("customerId", id);
+//        query.executeUpdate();
+
+        session.delete(customer);
+        return customer;
+    }
 }

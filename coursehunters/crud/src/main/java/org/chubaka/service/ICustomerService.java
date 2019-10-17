@@ -11,4 +11,6 @@ public interface ICustomerService {
     Customer saveCustomer(Customer customer);
 
     Customer getCustomer(int id);
+
+    Customer deleteCustomer(int id);
 }

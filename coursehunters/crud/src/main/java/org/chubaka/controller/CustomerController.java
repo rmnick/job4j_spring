@@ -36,9 +36,14 @@ public class CustomerController {
 
     @GetMapping("/updateCustomer")
     public String updateCustomer(@RequestParam("customerId") int id, Model model) {
-        System.out.println(service.getCustomer(id));
         model.addAttribute("customer", service.getCustomer(id));
         return "update-customer";
+    }
+
+    @GetMapping("/deleteCustomer")
+    public String deleteCustomer(@RequestParam("customerId") int id) {
+        System.out.println(service.deleteCustomer(id));
+        return "redirect:/customer/list/";
     }
 
 }

@@ -12,4 +12,6 @@ public interface ICustomerDao {
     Customer saveCustomer(Customer customer);
 
     Customer getCustomer(int id);
+
+    Customer deleteCustomer(int id);
 }
