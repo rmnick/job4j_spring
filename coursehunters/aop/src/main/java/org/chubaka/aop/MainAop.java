@@ -28,6 +28,9 @@ public class MainAop {
             e.printStackTrace();
         }
 
+        //around aspect exmpl
+        example.doWithDelay(true);
+
         context.close();
 
     }

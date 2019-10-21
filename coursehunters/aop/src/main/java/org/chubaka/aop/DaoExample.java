@@ -29,8 +29,21 @@ public class DaoExample {
     }
 
     public void doException(boolean b) {
-        if (b == true) {
+        if (b) {
             throw new RuntimeException("hey from doException");
+        }
+    }
+
+    public void doWithDelay(boolean b) {
+        try {
+            System.out.println("start ...");
+            Thread.sleep(2000);
+            System.out.println("end");
+            if (b) {
+                throw new RuntimeException("from delayMethod");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

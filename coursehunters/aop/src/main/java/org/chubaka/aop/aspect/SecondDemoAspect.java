@@ -16,10 +16,10 @@ import java.util.List;
 @Order(2)
 public class SecondDemoAspect {
     @Pointcut("execution(public * org.chubaka.aop.*.*(..))")
-    private void doBeforDoSomething(){};
+    private void doBeforDoSomething() { };
 
     @Pointcut("execution(public void org.chubaka.aop.DaoExample.doSomethingMore())")
-    private void doBeforeDoSomethingMore(){};
+    private void doBeforeDoSomethingMore() { };
 
     //use pointcut definition and logical express
     @Before("doBeforDoSomething() && !(doBeforeDoSomethingMore())")
