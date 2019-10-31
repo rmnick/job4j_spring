@@ -12,21 +12,29 @@ import org.springframework.security.core.userdetails.User;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+//    User.UserBuilder users = User.withDefaultPasswordEncoder();
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser(users.username("john")
+//                .password("123")
+//                .roles("EMPLOYEE"));
+
+
         auth.inMemoryAuthentication()
                 .withUser("john")
-                .password("123")
+                .password("{noop}123")
                 .roles("EMPLOYEE");
 
         auth.inMemoryAuthentication()
                 .withUser("mary")
-                .password("234")
+                .password("{noop}234")
                 .roles("MANAGER");
 
         auth.inMemoryAuthentication()
                 .withUser("nick")
-                .password("345")
+                .password("{noop}345")
                 .roles("ADMIN");
     }
 
@@ -39,6 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/showLoginPage")
                 .loginProcessingUrl("/successWay")
+                .permitAll()
+                .and()
+                .logout()
                 .permitAll();
     }
 }
