@@ -20,6 +20,7 @@
         <module>crud</module>
         <module>aop</module>
         <module>security</module>
+        <module>securityJDBC</module>
     </modules>
 
     <dependencies>
