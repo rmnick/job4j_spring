@@ -21,6 +21,7 @@
         <module>aop</module>
         <module>security</module>
         <module>securityJDBC</module>
+        <module>rest</module>
     </modules>
 
     <dependencies>
